@@ -10,6 +10,11 @@
     <form id="form1" runat="server">
     <div>
     <h1>Welcome to my first asp.net website</h1>
+        <% 
+            Response.Write("<h3>");
+            Response.Write("The current time is : " + DateTime.Now);
+            Response.Write("</h3>");
+             %>
     </div>
     </form>
 </body>

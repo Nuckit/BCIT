@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using ASP;
 
 public partial class OrderForm : System.Web.UI.Page
 {
@@ -13,13 +14,20 @@ public partial class OrderForm : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        string flowerType = DropDownListFlowers.SelectedValue;
-        string address = TextBoxAddress.Text;
-        string email = TextBoxEmail.Text;
-        string title = RadioButtonListTitles.SelectedValue;
-        string recipientName = TextBoxRecipientName.Text;
-        bool areFlowersWrapped = CheckBoxWrapFlowers.Checked;
+        Order order = new Order
+        {
+            FlowerType = DropDownListFlowers.SelectedValue,
+            Address = TextBoxAddress.Text,
+            Email = TextBoxEmail.Text,
+            Title = RadioButtonListTitles.SelectedValue,
+            RecipientName = TextBoxRecipientName.Text,
+            AreFlowersWrapped = CheckBoxWrapFlowers.Checked
+        };
 
+        Application.Lock();
+        Session.Add(global_asax.OrderKey, order);
+        Application.UnLock();
 
+        Response.Redirect("OrderConfirmation.aspx");
     }
 }

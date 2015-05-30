@@ -20,10 +20,13 @@
         <br />
         <br />
         Address: <asp:TextBox ID="TextBoxAddress" runat="server" Rows="3" TextMode="MultiLine"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidatorAddress" runat="server" ControlToValidate="TextBoxAddress" ErrorMessage="Address cannot be empty">*</asp:RequiredFieldValidator>
         <br />
         <br />
         Email:
         <asp:TextBox ID="TextBoxEmail" runat="server"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidatorEmail" runat="server" ControlToValidate="TextBoxEmail" ErrorMessage="Email cannot be empty">*</asp:RequiredFieldValidator>
+        <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" ControlToValidate="TextBoxEmail" ErrorMessage="Email must be valid" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*">*</asp:RegularExpressionValidator>
     </div>
         <p>
             Title: <asp:RadioButtonList ID="RadioButtonListTitles" runat="server" RepeatDirection="Horizontal">
@@ -35,6 +38,7 @@
         <p>
             Recipient Name:
             <asp:TextBox ID="TextBoxRecipientName" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidatorRecipientName" runat="server" ControlToValidate="TextBoxRecipientName" ErrorMessage="Recipient name must not be empty">*</asp:RequiredFieldValidator>
         </p>
         <p>
             Wrap flowers?
@@ -43,6 +47,7 @@
         <p>
             <asp:Button ID="ButtonSubmitOrder" runat="server" OnClick="Button1_Click" Text="Submit Order" />
         </p>
+        <asp:ValidationSummary ID="ValidationSummary1" runat="server" />
     </form>
 </body>
 </html>

@@ -7,8 +7,7 @@ using System.Xml.Serialization;
 
 [Serializable]
 public class Country
-{
-    [XmlAttribute("root")]
+{    
     public string Name { get; set; }
     public uint Population { get; set; }
     public string Capital { get; set; }

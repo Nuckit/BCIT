@@ -10,7 +10,7 @@ using ASP;
 
 public partial class Countries : Page
 {
-    private const string BooksXmlPath = "Books.Xml";
+    private const string BooksXmlPath = "Books.xml";
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -31,10 +31,14 @@ public partial class Countries : Page
         TextBoxPopulation.Text = string.Empty;
         TextBoxCapitalCity.Text = string.Empty;
     }
-    protected void ButtonCreateXml_Click(object sender, EventArgs e)
-    {
-        WriteXmlWithoutSerialization();
+    protected void ButtonCreateXmlWithSerialization_Click(object sender, EventArgs e)
+    {        
         WriteXmlWithSerialization();
+    }
+
+    protected void ButtonCreateXmlWithoutSerialization_Click(object sender, EventArgs e)
+    {
+        WriteXmlWithoutSerialization();        
     }
 
     private void WriteXmlWithoutSerialization()
@@ -45,7 +49,7 @@ public partial class Countries : Page
 
             List<Country> countries = GetAllCountries();
 
-            xmlWriter.WriteStartDocument();            
+            xmlWriter.WriteStartDocument();
             xmlWriter.WriteComment("Written: " + DateTime.UtcNow);
             xmlWriter.WriteStartElement("Countries");
 
@@ -61,11 +65,47 @@ public partial class Countries : Page
             xmlWriter.WriteEndElement();
         }
 
+        StringBuilder sb = new StringBuilder();
 
+        using (XmlTextReader xmlTextReader = new XmlTextReader(Server.MapPath(BooksXmlPath)))
+        {
+            while (xmlTextReader.Read())
+            {
+                switch (xmlTextReader.NodeType)
+                {
+                    case XmlNodeType.XmlDeclaration:
+                    case XmlNodeType.Comment:
+                    case XmlNodeType.Element:
+                    {
+                        string s = String.Format("{0}: {1} <br/>", xmlTextReader.NodeType,
+                            xmlTextReader.Name);
+                        sb.Append(s);
+                        break;
+                    }
+                    case XmlNodeType.Text:
+                    {
+                        string s = String.Format("&nbsp;&nbsp;&nbsp;<b>Value: {0} </b></br>",
+                            xmlTextReader.Value);
+                        sb.Append(s);
+                    }
+                        break;
+                }
+                if (xmlTextReader.HasAttributes)
+                {
+                    while (xmlTextReader.MoveToNextAttribute())
+                    {
 
-        
+                        string s = String.Format("&nbsp;&nbsp;&nbsp;<i>Attribute: {0} = {1}</i></br>",
+                            xmlTextReader.Name,
+                            xmlTextReader.Value);
+                        sb.Append(s);
 
-        
+                    }
+                }
+            }
+        }
+
+        LabelXml.Text = sb.ToString();
     }
 
     private void WriteXmlWithSerialization()

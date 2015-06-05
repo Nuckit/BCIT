@@ -26,10 +26,12 @@
             <asp:Button ID="ButtonAddCountry" runat="server" OnClick="ButtonAddCountry_Click" Text="Add Country" />
         </p>
         <p>
-            <asp:Button ID="ButtonCreateXml" runat="server" OnClick="ButtonCreateXml_Click" Text="Create XML" />
+            <asp:Button ID="ButtonCreateXmlWithSerialization" runat="server" OnClick="ButtonCreateXmlWithSerialization_Click" Text="Create XML (serialization)" />
+        &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="ButtonCreateXmlWithoutSerialization" runat="server" OnClick="ButtonCreateXmlWithoutSerialization_Click" Text="Create XML (no serialization)" />
         </p>
     </div>
-        <asp:Xml ID="XmlCountriesView" runat="server"></asp:Xml>
+        <asp:Label ID="LabelXml" runat="server"></asp:Label>
     </form>
 </body>
 </html>

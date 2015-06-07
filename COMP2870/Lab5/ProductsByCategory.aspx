@@ -10,10 +10,14 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:DropDownList ID="DropDownListCategories" runat="server">
+        <asp:DropDownList ID="DropDownListCategories" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownListCategories_SelectedIndexChanged">
         </asp:DropDownList>
     
+        <br />
+    
     </div>
+        <asp:GridView ID="GridViewProducts" runat="server">
+        </asp:GridView>
     </form>
 </body>
 </html>

@@ -1,0 +1,1 @@
+﻿INSERT INTO Category(Name) VALUES ('Home'),('Work'),('Personal'),('Misc')

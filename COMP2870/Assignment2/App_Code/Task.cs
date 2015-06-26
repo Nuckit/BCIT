@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 /// <summary>
 /// Summary description for Task
 /// </summary>
-public class Task
+public class Task : IValidatableObject
 {
     public string Name { get; set; }
     public int TaskId { get; set; }
@@ -21,4 +23,17 @@ public class Task
 		// TODO: Add constructor logic here
 		//
 	}
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (StartDate >= DueDate)
+        {
+            yield return new ValidationResult("Due Date must be after the start date", new List<string>{ "StartDate", "DueDate"});
+        }
+
+        if (Completed && PercentComplete != 100)
+        {
+            yield return new ValidationResult("Percent complete must be at 100% if the task is completed", new List<string> { "Completed", "PercentComplete" });
+        }
+    }
 }

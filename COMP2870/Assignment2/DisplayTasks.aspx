@@ -9,8 +9,11 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    
+    <h3>All Tasks</h3>
     </div>
+        <asp:GridView ID="GridViewTasks" runat="server">
+        </asp:GridView>
+        <asp:HyperLink ID="HyperLinkBack" NavigateUrl="Default.aspx" runat="server">Go Back</asp:HyperLink>
     </form>
 </body>
 </html>

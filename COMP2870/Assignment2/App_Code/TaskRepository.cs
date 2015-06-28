@@ -12,12 +12,19 @@ public class TaskRepository
 {
     private static readonly string ConnectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-	public TaskRepository()
+    private static readonly Lazy<TaskRepository> InstanceHolder = new Lazy<TaskRepository>(() => new TaskRepository());
+
+	private TaskRepository()
 	{
 		//
 		// TODO: Add constructor logic here
 		//
 	}
+
+    public static TaskRepository Instance
+    {
+        get { return InstanceHolder.Value; }
+    }
 
     public int AddTask(Task task)
     {
@@ -45,7 +52,7 @@ public class TaskRepository
     {
         using (SqlConnection connection = GetConnection())
         {
-            string commandText = "SELECT * FROM Task";
+            string commandText = "SELECT t.*, c.Name CategoryName FROM Task t JOIN Category c ON t.CategoryId = c.CategoryId";
 
             using (SqlCommand command = new SqlCommand(commandText, connection))
             {
@@ -62,11 +69,12 @@ public class TaskRepository
                             TaskId = (int)reader["TaskId"],
                             Name = (string)reader["Name"],
                             CategoryId = (int)reader["CategoryId"],
+                            Category = (string)reader["CategoryName"],
                             StartDate = (DateTime)reader["StartDate"],
                             DueDate = (DateTime)reader["DueDate"],
                             Completed = (bool)reader["Completed"],
                             Priority = (int)reader["Priority"],
-                            PercentComplete = (short)reader["PercentComplete"]
+                            PercentComplete = Convert.ToInt16(reader["PercentComplete"])
                         });
                     }
 
@@ -88,7 +96,7 @@ public class TaskRepository
 
     public List<Task> GetPendingTasks()
     {
-        return GetTasks().Where(task => task.StartDate > DateTime.Now).ToList();
+        return GetTasks().Where(task => !task.Completed).ToList();
     }
 
     public int UpdateTask(Task task)
@@ -141,7 +149,39 @@ public class TaskRepository
 
     public List<Task> GetTasksByCategory(string category)
     {
-        return GetTasks().Where(task => task.Category == category).ToList();
+        using (SqlConnection connection = GetConnection())
+        {
+            string commandText = "SELECT t.*, c.Name CategoryName FROM Task t JOIN Category c ON t.CategoryId = c.CategoryId WHERE c.Name = @CategoryName";
+
+            using (SqlCommand command = new SqlCommand(commandText, connection))
+            {
+                command.Parameters.AddWithValue("@CategoryName", category);
+                connection.Open();
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    List<Task> tasks = new List<Task>();
+
+                    while (reader.Read())
+                    {
+                        tasks.Add(new Task
+                        {
+                            TaskId = (int)reader["TaskId"],
+                            Name = (string)reader["Name"],
+                            CategoryId = (int)reader["CategoryId"],
+                            Category = (string)reader["CategoryName"],
+                            StartDate = (DateTime)reader["StartDate"],
+                            DueDate = (DateTime)reader["DueDate"],
+                            Completed = (bool)reader["Completed"],
+                            Priority = (int)reader["Priority"],
+                            PercentComplete = Convert.ToInt16(reader["PercentComplete"])
+                        });
+                    }
+
+                    return tasks;
+                }
+            }
+        } 
     }
 
     public DataSet ExportTasks()
@@ -175,7 +215,7 @@ public class TaskRepository
         }
     }
 
-    private SqlConnection GetConnection()
+    private static SqlConnection GetConnection()
     {
         return new SqlConnection(ConnectionString);
     }

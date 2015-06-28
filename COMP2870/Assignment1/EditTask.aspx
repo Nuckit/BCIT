@@ -30,7 +30,7 @@
     </div>        
         <br />
         <br />
-        <asp:Label ID="LabelAddResults" runat="server"></asp:Label>
+        <asp:Label ID="LabelResults" runat="server"></asp:Label>
     </form>
 </body>
 </html>

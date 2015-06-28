@@ -9,6 +9,8 @@ public partial class CompletedTasks : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        var repository = TaskRepository.Instance;
+        GridViewTasks.DataSource = repository.GetCompletedTasks();
+        GridViewTasks.DataBind();
     }
 }

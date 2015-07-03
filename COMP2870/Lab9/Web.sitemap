@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode title="All Pages"  description="Root for all pages">
+        <siteMapNode url="~/Page1.aspx" title="Page 1"  description="This is page 1" />
+        <siteMapNode url="~/Page2.aspx" title="Page 2"  description="This is page 2" />
+    </siteMapNode>
+</siteMap>

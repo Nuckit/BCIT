@@ -1,0 +1,36 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>    
+</head>
+<body>
+<h2>Ricky</h2>
+    <form id="form1" runat="server">
+    <div>
+        <asp:Label ID="LabelCurrentPage" runat="server"></asp:Label>
+        <br />
+        <asp:SiteMapPath ID="SiteMapPath" runat="server">
+        </asp:SiteMapPath>
+        <br />
+        <br />
+        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource" Orientation="Horizontal">
+        </asp:Menu>
+        <br />
+        <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource">
+        </asp:TreeView>
+        <asp:SiteMapDataSource ID="SiteMapDataSource" runat="server" />
+        <br />                
+        <h3>Custom page content:</h3>
+        <br/>
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

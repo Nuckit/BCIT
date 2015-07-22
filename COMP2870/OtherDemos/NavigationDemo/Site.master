@@ -1,0 +1,74 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="Site" %>
+
+<!DOCTYPE html>
+
+
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .style1 {
+            height: 73px;
+        }
+
+        .style2 {
+            width: 150px;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table border="0" style="width: 944px; height: 718px">
+                <tr>
+                    <td colspan="2" valign="middle" align="center" class="style1">
+                        <h2 runat="server" id="h3Header">COMP 2870
+                        </h2>
+
+
+                        <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1" Orientation="Horizontal" StaticDisplayLevels="2" BackColor="#FFFBD6" DynamicHorizontalOffset="2" Font-Names="Verdana" Font-Size="1em" ForeColor="#990000" StaticSubMenuIndent="10px">
+                            <DynamicHoverStyle BackColor="#990000" ForeColor="White" />
+                            <DynamicMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <DynamicMenuStyle BackColor="#FFFBD6" />
+                            <DynamicSelectedStyle BackColor="#FFCC66" />
+                            <StaticHoverStyle BackColor="#990000" ForeColor="White" />
+                            <StaticMenuItemStyle HorizontalPadding="5px" VerticalPadding="2px" />
+                            <StaticSelectedStyle BackColor="#FFCC66" />
+                        </asp:Menu>
+                        
+
+
+                        <hr />
+
+                        <asp:SiteMapPath ID="SiteMapPath1" runat="server">
+                        </asp:SiteMapPath>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#FFFFCC" class="style2" valign="top">
+
+                        <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1">
+                        </asp:TreeView>
+                        <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+                    </td>
+                    <td width="550" height="400" bgcolor="white" valign="top">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center" height="20" bgcolor="#CCCCCC">©Copyright COMP 2870
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    </form>
+</body>
+</html>

@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:Label Text="this text should be blue" SkinID="LabelBlue" runat="server" />
+        <asp:Label Text='<%# "test " + DateTime.Now %>' SkinID="LabelBlue" runat="server" />
     </div>
     </form>
 </body>

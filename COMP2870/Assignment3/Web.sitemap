@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/Default.aspx" title="Home"  description="" roles="*">
+    <siteMapNode url="" title="Tasks"  description="" roles="user,admin">
+        <siteMapNode url="~/AddTask.aspx" title="Add"  description="" roles="*"/>
+        <siteMapNode url="" title="View"  description="" roles="*">
+          <siteMapNode url="~/DisplayTasks.aspx" title="All"  description="" roles="*"/>
+          <siteMapNode url="~/CompletedTasks.aspx" title="Completed"  description="" roles="*"/>
+          <siteMapNode url="~/PendingTasks.aspx" title="Pending"  description="" roles="*"/>
+          <siteMapNode url="~/TasksByCategory.aspx" title="By Category"  description="" roles="*"/>          
+        </siteMapNode>
+    </siteMapNode>
+    <siteMapNode url="~/AddCategory.aspx" title="Add Category"  description="" roles="user,admin"/>
+    <siteMapNode url="" title="Admin"  description="" roles="Admin">
+      <siteMapNode url="~/Admin/ManageUsers.aspx" title="Manage Users"  description="" roles="admin"/>
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

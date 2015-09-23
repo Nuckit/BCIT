@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 
-
 /// <summary>
 /// Summary description for Repository
 /// </summary>
 public class Repository
 {
-    private static readonly NorthwindEntities1 Model = new NorthwindEntities1();
+    private static readonly NorthwindEntities Model = new NorthwindEntities();
 
     public static Repository Instance
     {

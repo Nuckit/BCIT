@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Bogus";
+    string[] days = ViewBag.Days as string[];
+}
+
+<h2>@ViewBag.Moon</h2>
+
+<ul>
+    @{
+        foreach (var day in days)
+        {
+            <h3>@day</h3>
+        }
+    }
+</ul>
+

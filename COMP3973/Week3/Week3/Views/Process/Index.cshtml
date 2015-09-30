@@ -1,0 +1,15 @@
+﻿@model List<System.Diagnostics.Process>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<ul>
+    @{
+        foreach (var process in Model)
+        {            
+            <li>@Html.ActionLink(process.ProcessName, "Details", new { id = process.Id})</li>
+        }
+}
+</ul>
+

@@ -1,0 +1,15 @@
+﻿@model string[]
+@{
+    ViewBag.Title = "Content";
+}
+
+<h2>Content</h2>
+
+<ul>
+    @{
+        foreach (var line in Model)
+        {
+            <li>@line</li>
+        }
+    }
+</ul>

@@ -26,5 +26,13 @@ namespace Week3.Controllers
 
             return View();
         }
+
+        public ActionResult Bogus()
+        {
+            ViewBag.Moon = "Bogus page.";
+            ViewBag.Days = new[] {"Mon", "Tues", "Wed"};
+
+            return View();
+        }
     }
 }

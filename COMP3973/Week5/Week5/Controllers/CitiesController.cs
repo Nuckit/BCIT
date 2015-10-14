@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -17,19 +16,19 @@ namespace Week5.Controllers
         private LocationContext db = new LocationContext();
 
         // GET: Cities
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Cities.ToListAsync());
+            return View(db.Cities.ToList());
         }
 
         // GET: Cities/Details/5
-        public async Task<ActionResult> Details(int? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = await db.Cities.FindAsync(id);
+            City city = db.Cities.Find(id);
             if (city == null)
             {
                 return HttpNotFound();
@@ -48,12 +47,12 @@ namespace Week5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CityId,Name,Population")] City city)
+        public ActionResult Create([Bind(Include = "CityId,Name,Population")] City city)
         {
             if (ModelState.IsValid)
             {
                 db.Cities.Add(city);
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
@@ -61,13 +60,13 @@ namespace Week5.Controllers
         }
 
         // GET: Cities/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = await db.Cities.FindAsync(id);
+            City city = db.Cities.Find(id);
             if (city == null)
             {
                 return HttpNotFound();
@@ -80,25 +79,25 @@ namespace Week5.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CityId,Name,Population")] City city)
+        public ActionResult Edit([Bind(Include = "CityId,Name,Population")] City city)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(city).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(city);
         }
 
         // GET: Cities/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            City city = await db.Cities.FindAsync(id);
+            City city = db.Cities.Find(id);
             if (city == null)
             {
                 return HttpNotFound();
@@ -109,11 +108,11 @@ namespace Week5.Controllers
         // POST: Cities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            City city = await db.Cities.FindAsync(id);
+            City city = db.Cities.Find(id);
             db.Cities.Remove(city);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

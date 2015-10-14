@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Week5Lib
 {
@@ -14,6 +15,7 @@ namespace Week5Lib
         [Required]
         public int Population { get; set; }
 
+        [Required]        
         public Province Province { get; set; }
     }
 }

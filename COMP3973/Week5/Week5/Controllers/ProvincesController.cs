@@ -28,8 +28,7 @@ namespace Week5.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //Province province = db.Provinces.Find(id);
-            Province province = db.Provinces.Include(p => p.Cities).FirstOrDefault(i => i.Code == id);
+            Province province = db.Provinces.Find(id);
             if (province == null)
             {
                 return HttpNotFound();

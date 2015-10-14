@@ -30,32 +30,55 @@ namespace Week5.Migrations.LocationMigrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            var province1 = new Province
+            {
+                Code = "BC",
+                Name = "British Columbia"
+            };
+
+            var province2 = new Province
+            {
+                Code = "AB",
+                Name = "Alberta"
+            };
+            var province3 = new Province
+            {
+                Code = "NS",
+                Name = "Nova Scotia"
+            };
+
+            context.Provinces.AddOrUpdate(p => p.Code,
+                province1,
+                province2,
+                province3);
+
+            context.SaveChanges();
             var city1 = new City
             {
-                CityId = 1,
                 Name = "Vancouver",
-                Population = 100000
+                Population = 100000,
+                Province = province1
             };
 
             var city2 = new City
-            {
-                CityId = 2,
+            {                
                 Name = "Surrey",
-                Population = 5000
+                Population = 5000,
+                Province = province1
             };
 
             var city3 = new City
-            {
-                CityId = 3,
+            {                
                 Name = "Calgary",
-                Population = 2000
+                Population = 2000,
+                Province = province2
             };
 
             var city4 = new City
-            {
-                CityId = 3,
+            {                
                 Name = "testtest",
-                Population = 2000
+                Population = 2000,
+                Province = province3
             };
 
             context.Cities.AddOrUpdate(c => c.CityId,
@@ -64,37 +87,7 @@ namespace Week5.Migrations.LocationMigrations
                 city3, 
                 city4);
 
-            context.SaveChanges();
-
-            context.Provinces.AddOrUpdate(p => p.Code,
-                new Province
-                {
-                    Code = "BC",
-                    Name = "British Columbia",
-                    Cities = new List<City>
-                    {
-                        city1,
-                        city2,
-                    }
-                },
-                new Province
-                {
-                    Code = "AB",
-                    Name = "Alberta",
-                    Cities = new List<City>
-                    {
-                        city3,                        
-                    }
-                },
-                new Province
-                {
-                    Code = "NS",
-                    Name = "Nova Scotia",
-                    Cities = new List<City>
-                    {
-                        city4,                        
-                    }
-                });
+            context.SaveChanges();         
         }
     }
 }

@@ -184,6 +184,10 @@
     <Compile Include="Migrations\LocationMigrations\201510140427542_InitialCreateNew.Designer.cs">
       <DependentUpon>201510140427542_InitialCreateNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\LocationMigrations\201510140442003_InitialNew.cs" />
+    <Compile Include="Migrations\LocationMigrations\201510140442003_InitialNew.Designer.cs">
+      <DependentUpon>201510140442003_InitialNew.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\LocationMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -287,6 +291,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\LocationMigrations\201510140427542_InitialCreateNew.resx">
       <DependentUpon>201510140427542_InitialCreateNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\LocationMigrations\201510140442003_InitialNew.resx">
+      <DependentUpon>201510140442003_InitialNew.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

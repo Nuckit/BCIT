@@ -4,20 +4,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Week5Lib
 {
     public class City
-    {
-        [Required]
+    {        
         public int CityId { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string Name { get; set; }
+        public string CityName { get; set; }
 
         [Required]
         public int Population { get; set; }
 
         public string ProvinceCode { get; set; }
-
-        [Required]        
+        
         public Province Province { get; set; }
     }
 }

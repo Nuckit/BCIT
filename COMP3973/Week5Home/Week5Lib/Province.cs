@@ -12,7 +12,7 @@ namespace Week5Lib
 
         [Required]
         [StringLength(20)]
-        public string Name { get; set; }
+        public string ProvinceName { get; set; }
         
         public List<City> Cities { get; set; }
     }

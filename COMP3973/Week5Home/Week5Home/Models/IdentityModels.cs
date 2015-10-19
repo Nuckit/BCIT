@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using System.Data.Entity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Week5Home.DataContext;
+
 
 namespace Week5Home.Models
 {
@@ -10,8 +13,9 @@ namespace Week5Home.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection")
+            : base("IdentitiesConnection")
         {
+            
         }
     }
 }

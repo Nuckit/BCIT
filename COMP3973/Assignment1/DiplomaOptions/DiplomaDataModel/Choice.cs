@@ -12,9 +12,9 @@ namespace DiplomaDataModel
         [MaxLength(9), RegularExpression(@"A00\d{1,6}")]
         public string StudentId { get; set; }
 
-        [MaxLength(40)]
+        [Required, MaxLength(40)]
         public string StudentFirstName { get; set; }
-        [MaxLength(40)]
+        [Required, MaxLength(40)]
         public string StudentLastName { get; set; }
 
         [ForeignKey("OptionId")]
@@ -28,6 +28,9 @@ namespace DiplomaDataModel
         public DateTime SelectionDate { get; set; }
 
         public YearTerm YearTerm { get; set; }
-        public Option Option { get; set; }
+        public Option FirstOption { get; set; }
+        public Option SecondOption { get; set; }
+        public Option ThirdOption { get; set; }
+        public Option FourthOption { get; set; }
     }
 }

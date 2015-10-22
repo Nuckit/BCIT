@@ -1,0 +1,13 @@
+﻿enable-migrations -ContextTypeName OptionsWebSite.Models.DiplomaOptionsContext -MigrationsDirectory Migrations\DiplomaOptionsMigrations
+
+enable-migrations -ContextTypeName OptionsWebSite.Models.ApplicationDbContext -MigrationsDirectory Migrations\IdentityMigrations
+
+add-migration -ConfigurationTypeName OptionsWebSite.Migrations.DiplomaOptionsMigrations.Configuration "Initial"
+
+add-migration -ConfigurationTypeName OptionsWebSite.Migrations.IdentityMigrations.Configuration "Initial"
+
+update-database -ConfigurationTypeName OptionsWebSite.Migrations.DiplomaOptionsMigrations.Configuration 
+
+update-database -ConfigurationTypeName OptionsWebSite.Migrations.DiplomaOptionsMigrations.Configuration -TargetMigration "InitialCreate"
+
+update-database -ConfigurationTypeName OptionsWebSite.Migrations.IdentityMigrations.Configuration

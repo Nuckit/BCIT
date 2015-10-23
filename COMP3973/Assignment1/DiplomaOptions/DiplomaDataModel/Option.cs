@@ -12,6 +12,9 @@ namespace DiplomaDataModel
 
         public bool IsActive { get; set; }
 
-        public List<Choice> Choices { get; set; }
+        public List<Choice> FirstChoices { get; set; }
+        public List<Choice> SecondChoices { get; set; }
+        public List<Choice> ThirdChoices { get; set; }
+        public List<Choice> FourthChoices { get; set; }
     }
 }

@@ -25,13 +25,13 @@ namespace DiplomaDataModel
 
         public YearTerm YearTerm { get; set; }
 
-        [ForeignKey("FirstChoiceOptionId")]
+        [ForeignKey("FirstChoiceOptionId"), InverseProperty("FirstChoices")]
         public Option FirstOption { get; set; }
-        [ForeignKey("SecondChoiceOptionId")]
+        [ForeignKey("SecondChoiceOptionId"), InverseProperty("SecondChoices")]
         public Option SecondOption { get; set; }
-        [ForeignKey("ThirdChoiceOptionId")]
+        [ForeignKey("ThirdChoiceOptionId"), InverseProperty("ThirdChoices")]
         public Option ThirdOption { get; set; }
-        [ForeignKey("FourthChoiceOptionId")]
+        [ForeignKey("FourthChoiceOptionId"), InverseProperty("FourthChoices")]
         public Option FourthOption { get; set; }
     }
 }

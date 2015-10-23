@@ -16,21 +16,22 @@ namespace DiplomaDataModel
         public string StudentFirstName { get; set; }
         [Required, MaxLength(40)]
         public string StudentLastName { get; set; }
-
-        [ForeignKey("OptionId")]
-        public int FirstChoiceOptionId { get; set; }
-        [ForeignKey("OptionId")]
-        public int SecondChoiceOptionId { get; set; }
-        [ForeignKey("OptionId")]
-        public int ThirdChoiceOptionId { get; set; }
-        [ForeignKey("OptionId")]
+        
+        public int FirstChoiceOptionId { get; set; }        
+        public int SecondChoiceOptionId { get; set; }        
+        public int ThirdChoiceOptionId { get; set; }       
         public int FourthChoiceOptionId { get; set; }
         public DateTime SelectionDate { get; set; }
 
         public YearTerm YearTerm { get; set; }
+
+        [ForeignKey("FirstChoiceOptionId")]
         public Option FirstOption { get; set; }
+        [ForeignKey("SecondChoiceOptionId")]
         public Option SecondOption { get; set; }
+        [ForeignKey("ThirdChoiceOptionId")]
         public Option ThirdOption { get; set; }
+        [ForeignKey("FourthChoiceOptionId")]
         public Option FourthOption { get; set; }
     }
 }

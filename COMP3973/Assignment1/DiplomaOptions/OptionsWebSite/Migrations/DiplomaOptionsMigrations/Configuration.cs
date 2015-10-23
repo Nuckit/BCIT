@@ -1,10 +1,13 @@
-using System.Data.Entity.Migrations;
 using DiplomaDataModel;
-using OptionsWebSite.Models;
 
 namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
 {
-    internal sealed class Configuration : DbMigrationsConfiguration<DiplomaOptionsContext>
+    using System;
+    using System.Data.Entity;
+    using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    internal sealed class Configuration : DbMigrationsConfiguration<OptionsWebSite.Models.DiplomaOptionsContext>
     {
         public Configuration()
         {
@@ -12,7 +15,7 @@ namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
             MigrationsDirectory = @"Migrations\DiplomaOptionsMigrations";
         }
 
-        protected override void Seed(DiplomaOptionsContext context)
+        protected override void Seed(OptionsWebSite.Models.DiplomaOptionsContext context)
         {
             //  This method will be called after migrating to the latest version.
 

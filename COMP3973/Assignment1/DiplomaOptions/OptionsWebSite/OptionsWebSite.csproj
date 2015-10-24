@@ -159,12 +159,21 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChoicesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\DiplomaOptionsMigrations\201510230700561_Initial.cs" />
+    <Compile Include="Migrations\DiplomaOptionsMigrations\201510230700561_Initial.Designer.cs">
+      <DependentUpon>201510230700561_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\DiplomaOptionsMigrations\Configuration.cs" />
+    <Compile Include="Migrations\IdentityMigrations\201510230701187_Initial.cs" />
+    <Compile Include="Migrations\IdentityMigrations\201510230701187_Initial.Designer.cs">
+      <DependentUpon>201510230701187_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\IdentityMigrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\DiplomaOptionsContext.cs" />
@@ -234,6 +243,11 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Choices\Create.cshtml" />
+    <Content Include="Views\Choices\Delete.cshtml" />
+    <Content Include="Views\Choices\Details.cshtml" />
+    <Content Include="Views\Choices\Edit.cshtml" />
+    <Content Include="Views\Choices\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiplomaDataModel\DiplomaDataModel.csproj">
@@ -247,6 +261,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\DiplomaOptionsMigrations\201510230700561_Initial.resx">
+      <DependentUpon>201510230700561_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\IdentityMigrations\201510230701187_Initial.resx">
+      <DependentUpon>201510230701187_Initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

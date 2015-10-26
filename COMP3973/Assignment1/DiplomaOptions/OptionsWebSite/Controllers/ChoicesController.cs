@@ -45,7 +45,7 @@ namespace OptionsWebSite.Controllers
             ViewBag.FourthChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
             ViewBag.SecondChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
             ViewBag.ThirdChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
-            ViewBag.YearTermId = new SelectList(db.YearTerms, "YearTermId", "Term");
+            ViewBag.YearTermId = new SelectList(db.YearTerms, "YearTermId", "YearTermId");
             return View();
         }
 
@@ -87,7 +87,7 @@ namespace OptionsWebSite.Controllers
             ViewBag.FourthChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.FourthChoiceOptionId);
             ViewBag.SecondChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.SecondChoiceOptionId);
             ViewBag.ThirdChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.ThirdChoiceOptionId);
-            ViewBag.YearTermId = new SelectList(db.YearTerms, "YearTermId", "Term", choice.YearTermId);
+            ViewBag.YearTermId = new SelectList(db.YearTerms, "YearTermId", "YearTermId", choice.YearTermId);
             return View(choice);
         }
 
@@ -119,7 +119,7 @@ namespace OptionsWebSite.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Choice choice = db.Choices.Find(id);
+            Choice choice = db.Choices.Include(c => c.FirstOption).Include(c => c.FourthOption).Include(c => c.SecondOption).Include(c => c.ThirdOption).Include(c => c.YearTerm).FirstOrDefault(c => c.ChoiceId == id);
             if (choice == null)
             {
                 return HttpNotFound();

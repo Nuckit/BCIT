@@ -12,6 +12,9 @@
 <table class="table">
     <tr>
         <th>
+            Year
+        </th>
+        <th>
             Term
         </th>
         <th>
@@ -44,6 +47,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.YearTerm.Year)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.YearTerm.Term)
         </td>
         <td>
@@ -71,9 +77,9 @@
             @Html.DisplayFor(modelItem => item.SelectionDate)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ChoiceId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ChoiceId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ChoiceId })
+            @Html.ActionLink("Edit", "Edit", new {id = item.ChoiceId}) |
+            @Html.ActionLink("Details", "Details", new {id = item.ChoiceId}) |
+            @Html.ActionLink("Delete", "Delete", new {id = item.ChoiceId})
         </td>
     </tr>
 }

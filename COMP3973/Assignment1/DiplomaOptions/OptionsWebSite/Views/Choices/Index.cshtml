@@ -12,18 +12,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FirstOption.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FourthOption.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SecondOption.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ThirdOption.Title)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.YearTerm.YearTermId)
         </th>
         <th>
@@ -36,6 +24,18 @@
             @Html.DisplayNameFor(model => model.StudentLastName)
         </th>
         <th>
+            First Option
+        </th>
+        <th>
+            Second Option
+        </th>
+        <th>
+            Third Option
+        </th>
+        <th>
+            Fourth Option
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.SelectionDate)
         </th>
         <th></th>
@@ -43,18 +43,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstOption.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FourthOption.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SecondOption.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ThirdOption.Title)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.YearTerm.YearTermId)
         </td>
@@ -66,6 +54,18 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.StudentLastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstOption.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondOption.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ThirdOption.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FourthOption.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.SelectionDate)

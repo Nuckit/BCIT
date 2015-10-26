@@ -11,6 +11,7 @@ using OptionsWebSite.Models;
 
 namespace OptionsWebSite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ChoicesController : Controller
     {
         private DiplomaOptionsContext db = new DiplomaOptionsContext();
@@ -22,7 +23,7 @@ namespace OptionsWebSite.Controllers
             return View(choices.ToList());
         }
 
-        // GET: Choices/Details/5
+        // GET: Choices/Details/5        
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -70,7 +71,7 @@ namespace OptionsWebSite.Controllers
             return View(choice);
         }
 
-        // GET: Choices/Edit/5
+        // GET: Choices/Edit/5        
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,7 +93,7 @@ namespace OptionsWebSite.Controllers
 
         // POST: Choices/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ChoiceId,YearTermId,StudentId,StudentFirstName,StudentLastName,FirstChoiceOptionId,SecondChoiceOptionId,ThirdChoiceOptionId,FourthChoiceOptionId,SelectionDate")] Choice choice)
@@ -111,7 +112,7 @@ namespace OptionsWebSite.Controllers
             return View(choice);
         }
 
-        // GET: Choices/Delete/5
+        // GET: Choices/Delete/5        
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -126,7 +127,7 @@ namespace OptionsWebSite.Controllers
             return View(choice);
         }
 
-        // POST: Choices/Delete/5
+        // POST: Choices/Delete/5        
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

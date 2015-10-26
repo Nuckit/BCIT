@@ -5,7 +5,8 @@ namespace OptionsWebSite.Models
 {
     public class DiplomaOptionsContext : DbContext
     {
-        public DiplomaOptionsContext() : base("DefaultConnection")
+        public DiplomaOptionsContext()
+            : base("DiplomaOptionsConnection")
         {            
         }
 

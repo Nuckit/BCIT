@@ -41,10 +41,10 @@ namespace OptionsWebSite.Controllers
         // GET: Choices/Create
         public ActionResult Create()
         {
-            ViewBag.FirstChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title");
-            ViewBag.FourthChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title");
-            ViewBag.SecondChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title");
-            ViewBag.ThirdChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title");
+            ViewBag.FirstChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
+            ViewBag.FourthChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
+            ViewBag.SecondChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
+            ViewBag.ThirdChoiceOptionId = new SelectList(db.Options, "OptionId", "Title");
             ViewBag.YearTermId = new SelectList(db.YearTerms, "YearTermId", "Term");
             return View();
         }
@@ -83,10 +83,10 @@ namespace OptionsWebSite.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.FirstChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.FirstChoiceOptionId);
-            ViewBag.FourthChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.FourthChoiceOptionId);
-            ViewBag.SecondChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.SecondChoiceOptionId);
-            ViewBag.ThirdChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.ThirdChoiceOptionId);
+            ViewBag.FirstChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.FirstChoiceOptionId);
+            ViewBag.FourthChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.FourthChoiceOptionId);
+            ViewBag.SecondChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.SecondChoiceOptionId);
+            ViewBag.ThirdChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.ThirdChoiceOptionId);
             ViewBag.YearTermId = new SelectList(db.YearTerms, "YearTermId", "Term", choice.YearTermId);
             return View(choice);
         }

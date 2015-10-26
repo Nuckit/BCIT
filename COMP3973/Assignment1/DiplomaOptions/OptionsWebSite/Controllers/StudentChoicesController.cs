@@ -55,10 +55,10 @@ namespace OptionsWebSite.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.FirstChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.FirstChoiceOptionId);
-            ViewBag.FourthChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.FourthChoiceOptionId);
-            ViewBag.SecondChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.SecondChoiceOptionId);
-            ViewBag.ThirdChoiceOptionId = new SelectList(db.Options, "OptionId", "Title", choice.ThirdChoiceOptionId);
+            ViewBag.FirstChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.FirstChoiceOptionId);
+            ViewBag.FourthChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.FourthChoiceOptionId);
+            ViewBag.SecondChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.SecondChoiceOptionId);
+            ViewBag.ThirdChoiceOptionId = new SelectList(db.Options.Where(o => o.IsActive), "OptionId", "Title", choice.ThirdChoiceOptionId);
             return View(choice);
         }
 

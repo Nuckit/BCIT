@@ -49,7 +49,7 @@ namespace Week7.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued")] Product product)
+        public ActionResult Create([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Week7.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,QuantityPerUnit,UnitPrice,UnitsInStock,UnitsOnOrder,ReorderLevel,Discontinued")] Product product)
+        public ActionResult Edit([Bind(Include = "ProductID,ProductName,SupplierID,CategoryID,UnitPrice")] Product product)
         {
             if (ModelState.IsValid)
             {

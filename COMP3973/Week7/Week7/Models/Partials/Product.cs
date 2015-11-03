@@ -18,18 +18,21 @@ namespace Week7.Models
         [Display(Name = "Product Name")]
         [MaxWords(3)]
         public object ProductName { get; set; }
-
+        
         [UIHint("_SupplierDropDownList")]
+        [Display(Name = "Supplier")]
         public object SupplierID { get; set; }
-
+        
         [UIHint("_CategoryDropDownList")]
+        [Display(Name = "Category")]
         public object CategoryID { get; set; }
 
         [ScaffoldColumn(false)]
         public object QuantityPerUnit { get; set; }
         
         [Required]
-        [DataType(DataType.Currency)]
+        [DataType(DataType.Currency, ErrorMessage = "Input type is not in currency format")]
+        [Display(Name = "Unit Price")]
         public object UnitPrice { get; set; }
 
         [ScaffoldColumn(false)]

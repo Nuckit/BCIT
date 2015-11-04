@@ -1,0 +1,5 @@
+﻿enable-migrations -ContextTypeName StudentsContext -MigrationsDirectory Migrations\StudentsContext
+
+add-migration -ConfigurationTypeName StudentAPI.Migrations.StudentMigrations.StudentsContext "InitialCreate"
+
+update-database -ConfigurationTypeName StudentAPI.Migrations.StudentMigrations.Configuration

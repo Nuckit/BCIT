@@ -78,6 +78,59 @@
             });
         }
 
+        function GetPersonForEdit() {
+            jQuery.support.cors = true;
+            var id = $('#txtEditId').val();
+            $.ajax({
+                url: baseUrl + id,
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $('#txtEditId').val(data.PersonId),
+                    $('#txtEditFirstName').val(data.FirstName),
+                    $('#txtEditLastName').val(data.LastName),
+                    $('#txtEditOccupation').val(data.Occupation),
+                    $('#txtEditGender').val(data.Gender),
+                    $('#txtEditPicture').val(data.Picture),
+                    $('#txtEditResults').val("");
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
+        function EditPerson(target) {
+            jQuery.support.cors = true;
+            var id = $('#txtEditId').val();
+            var person = {
+                PersonId: $('#txtEditId').val(),
+                FirstName: $('#txtEditFirstName').val(),
+                LastName: $('#txtEditLastName').val(),
+                Gender: $('#txtEditGender').val(),
+                Occupation: $('#txtEditOccupation').val(),
+                Picture: $('#txtEditPicture').val()
+            };
+
+            $.ajax({
+                url: baseUrl + id,
+                type: 'PUT',
+                data: JSON.stringify(person),
+                contentType: "application/json;charset=utf-8",
+                success: function (data) {
+                    $('#txtEditFirstName').val("");
+                    $('#txtEditLastName').val("");
+                    $('#txtEditGender').val("");
+                    $('#txtEditOccupation').val("");
+                    $('#txtEditPicture').val("");
+                    $('#txtEditResults').val("Successfully edited");
+                },
+                error: function (x, y, z) {
+                    alert(x + '\n' + y + '\n' + z);
+                }
+            });
+        }
+
         function AddPerson(target) {
             jQuery.support.cors = true;
             var person = {
@@ -166,8 +219,19 @@
                 </table>
                 <div id="div_add"></div>
             </div>
-            <div id="edit">
-                <p>Edit data</p>
+            <div id="edit">                
+                <p>Enter Person Id: <input type="text" id="txtEditId" style="width:50PX" /></p>
+                <p><button onclick="GetPersonForEdit();return false;">Edit Person with ID</button></p>
+                <table>
+                    <tr><td>ID:</td><td><label id="txtEditId" /></td></tr>
+                    <tr><td>First Name:</td><td><input type="text" id="txtEditFirstName" /></td></tr>
+                    <tr><td>Last Name:</td><td><input type="text" id="txtEditLastName" /></td></tr>
+                    <tr><td>Occupation:</td><td><input type="text" id="txtEditOccupation" /></td></tr>
+                    <tr><td>Gender:</td><td><input type="text" id="txtEditGender" maxlength="1" /></td></tr>
+                    <tr><td>Picture:</td><td><input type="text" id="txtEditPicture" /></td></tr>
+                    <tr><td colspan="2"><button onclick="EditPerson('#div_edit'); return false;">Edit Person</button></td></tr>
+                </table>
+                <div id="div_edit"><input type="text" id="txtEditResults" /></div>
             </div>
             <div id="delete">
                 <p>Delete Person <input type="text" id="txtdelPersonId" style="width:50PX" /></p>

@@ -10,17 +10,23 @@ namespace DiplomaDataModel
         public int YearTermId { get; set; }
 
         [MaxLength(9), RegularExpression(@"A00\d{1,6}")]
+        [Display(Name = "Student ID")]
         public string StudentId { get; set; }
 
         [Required, MaxLength(40)]
+        [Display(Name = "First Name")]
         public string StudentFirstName { get; set; }
+
         [Required, MaxLength(40)]
+        [Display(Name = "Last Name")]
         public string StudentLastName { get; set; }
         
         public int FirstChoiceOptionId { get; set; }        
         public int SecondChoiceOptionId { get; set; }        
         public int ThirdChoiceOptionId { get; set; }       
         public int FourthChoiceOptionId { get; set; }
+
+        [Display(Name = "Selection Date")]
         public DateTime SelectionDate { get; set; }
 
         public YearTerm YearTerm { get; set; }

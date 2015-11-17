@@ -64,6 +64,7 @@ namespace OptionsWebSite.Models
     public class RegisterViewModel
     {
         [Required]
+        [MaxLength(9), RegularExpression(@"A00\d{1,6}")]
         [Display(Name = "Username")]
         public string UserName { get; set; }
 

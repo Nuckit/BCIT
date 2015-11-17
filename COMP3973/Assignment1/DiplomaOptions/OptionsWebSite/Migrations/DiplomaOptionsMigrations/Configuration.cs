@@ -7,7 +7,7 @@ namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<OptionsWebSite.Models.DiplomaOptionsContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<DiplomaOptionsContext>
     {
         public Configuration()
         {
@@ -15,7 +15,7 @@ namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
             MigrationsDirectory = @"Migrations\DiplomaOptionsMigrations";
         }
 
-        protected override void Seed(OptionsWebSite.Models.DiplomaOptionsContext context)
+        protected override void Seed(DiplomaOptionsContext context)
         {
             //  This method will be called after migrating to the latest version.
 
@@ -32,24 +32,28 @@ namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
 
             var yearTerm1 = new YearTerm
             {
+                YearTermId = 1,
                 Year = 2015,
                 Term = 10,
                 IsDefault = false
             };
             var yearTerm2 = new YearTerm
             {
+                YearTermId = 2,
                 Year = 2015,
                 Term = 20,
                 IsDefault = false
             };
             var yearTerm3 = new YearTerm
             {
+                YearTermId = 3,
                 Year = 2015,
                 Term = 30,
                 IsDefault = false
             };
             var yearTerm4 = new YearTerm
             {
+                YearTermId = 4,
                 Year = 2016,
                 Term = 10,
                 IsDefault = true
@@ -100,7 +104,7 @@ namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
                 IsActive = false
             };
 
-            context.Options.AddOrUpdate(o => o.OptionId, option1, option2, option3, option4, option5, option6, option7);
+            context.Options.AddOrUpdate(o => o.Title, option1, option2, option3, option4, option5, option6, option7);
             context.SaveChanges();
         }
     }

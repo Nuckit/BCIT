@@ -1,4 +1,5 @@
 using System.Data.Entity.Migrations;
+using DiplomaDataModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OptionsWebSite.Models;
@@ -36,6 +37,12 @@ namespace OptionsWebSite.Migrations.IdentityMigrations
                 roleManager.Create(new IdentityRole(adminRoleName));
             }
 
+            const string studentRoleName = "Student";
+            if (!roleManager.RoleExists(studentRoleName))
+            {
+                roleManager.Create(new IdentityRole(studentRoleName));
+            }
+
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             const string defaultAdminUserName = "A00111111";
@@ -69,7 +76,11 @@ namespace OptionsWebSite.Migrations.IdentityMigrations
                     Email = defaultStudentEmail,
                 };
 
-                userManager.Create(user, defaultStudentPassword);
+                IdentityResult result = userManager.Create(user, defaultStudentPassword);
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(userManager.FindByName(defaultStudentUserName).Id, studentRoleName);
+                }
             }
         }
     }

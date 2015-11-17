@@ -29,7 +29,7 @@
                         <li>@Html.ActionLink("Year Terms", "Index", "YearTerms")</li>
                         <li>@Html.ActionLink("Options", "Index", "Options")</li>
                     }
-                    else
+                    else if (User.IsInRole("Student"))
                     {
                         <li>@Html.ActionLink("Student Choices", "Index", "StudentChoices")</li>
                     }

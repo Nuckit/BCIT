@@ -162,6 +162,8 @@
     <Compile Include="Controllers\ChoicesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ManageRolesController.cs" />
+    <Compile Include="Controllers\ManageUsersController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\StudentChoicesController.cs" />
     <Compile Include="Controllers\YearTermsController.cs" />
@@ -265,6 +267,11 @@
     <Content Include="Views\Options\Index.cshtml" />
     <Content Include="Views\StudentChoices\Create.cshtml" />
     <Content Include="Views\StudentChoices\Index.cshtml" />
+    <Content Include="Views\ManageUsers\Index.cshtml" />
+    <Content Include="Views\ManageUsers\Edit.cshtml" />
+    <Content Include="Views\ManageRoles\Index.cshtml" />
+    <Content Include="Views\ManageRoles\Create.cshtml" />
+    <Content Include="Views\ManageRoles\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiplomaDataModel\DiplomaDataModel.csproj">
@@ -287,9 +294,7 @@
       <DependentUpon>201510230701187_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\ManageRoles\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

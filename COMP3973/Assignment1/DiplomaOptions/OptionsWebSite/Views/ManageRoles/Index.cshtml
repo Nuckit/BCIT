@@ -24,8 +24,8 @@
                 @Html.DisplayFor(modelItem => item.RoleName)
             </td>
             <td>
-                @Html.ActionLink("Add Users", "AddUsers", new { roleName = item.RoleName }) |
-                @Html.ActionLink("Remove Users", "RemoveUsers", new { roleName = item.RoleName }) |
+                @Html.ActionLink("Add User", "AddUser", new { roleName = item.RoleName }) |
+                @Html.ActionLink("Remove User", "RemoveUser", new { roleName = item.RoleName }) |
                 @Html.ActionLink("Delete", "Delete", new { roleName = item.RoleName })
             </td>
         </tr>

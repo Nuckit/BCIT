@@ -272,6 +272,8 @@
     <Content Include="Views\ManageRoles\Index.cshtml" />
     <Content Include="Views\ManageRoles\Create.cshtml" />
     <Content Include="Views\ManageRoles\Delete.cshtml" />
+    <Content Include="Views\ManageRoles\AddUser.cshtml" />
+    <Content Include="Views\ManageRoles\RemoveUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiplomaDataModel\DiplomaDataModel.csproj">

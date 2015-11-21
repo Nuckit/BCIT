@@ -48,6 +48,7 @@ namespace OptionsWebSite.Controllers
         {
             if (ModelState.IsValid && IsChoiceValid(choice))
             {
+                choice.StudentId = User.Identity.Name;
                 choice.YearTerm = db.YearTerms.FirstOrDefault(y => y.IsDefault);
                 choice.SelectionDate = DateTime.Now;
                 db.Choices.Add(choice);

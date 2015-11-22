@@ -1,0 +1,91 @@
+﻿@using OptionsWebSite.Models
+@model IEnumerable<OptionsWebSite.Models.ChoiceViewModel>
+
+@{
+    var optionStats = ViewData["OptionStats"] as List<OptionStatsViewModel>;
+}
+
+<table class="table">
+    <tr>
+        <th>
+            Year/Term
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentFirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StudentLastName)
+        </th>
+        <th>
+            First Option
+        </th>
+        <th>
+            Second Option
+        </th>
+        <th>
+            Third Option
+        </th>
+        <th>
+            Fourth Option
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectionDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.YearTermValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentFirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentLastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstOption.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondOption.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ThirdOption.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FourthOption.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SelectionDate)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<br/>
+<br/>
+
+@(Html.Kendo().Chart(optionStats)
+.Name("chart")
+.Title("Number of choices for each option")
+.Series(series =>
+{
+    series.Column(model => model.FirstOptionCount);
+    series.Column(model => model.SecondOptionCount);
+    series.Column(model => model.ThirdOptionCount);
+    series.Column(model => model.FourthOptionCount);
+})
+.CategoryAxis(axis => axis
+.Categories(model => model.OptionName))
+.ValueAxis(axis => axis.Numeric().MajorUnit(1)))
+)

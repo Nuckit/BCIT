@@ -12,6 +12,7 @@ using WebGrease.Css.Extensions;
 
 namespace OptionsWebSite.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ManageRolesController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<OptionsWebSite.Models.ChoiceViewModel>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>Index</h2>
+
+@*@(Html.Kendo().DropDownList()
+.Name("list")
+.DataTextField("Term")
+    .DataValueField("YearTermId")
+    .DataSource(source =>
+    {
+        source.Read(read =>
+        {
+            read.Action("GetYearTerms", "Reports");
+        });
+    })
+)*@
+
+
+@Html.DropDownList("YearTermId", null, htmlAttributes: new {id = "yearTermId", @class = "form-control"})
+
+<br/>
+
+<div id="reports">
+    @{Html.RenderPartial("_Index", Model);}
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#yearTermId").change(function () {
+            var id = $("#yearTermId").val();
+            $("#reports").load('@(Url.Action("Index","Reports",null, Request.Url.Scheme))?id=' + id);
+        });
+    });
+</script>  

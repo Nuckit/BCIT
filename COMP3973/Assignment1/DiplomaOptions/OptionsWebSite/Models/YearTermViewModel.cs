@@ -9,16 +9,19 @@ namespace OptionsWebSite.Models
         public int Year { get; set; }
         public string Term { get; set; }
         public bool IsDefault { get; set; }
-
-        public List<Choice> Choices { get; set; }
+        
 
         public YearTermViewModel(YearTerm yearTerm)
         {
             YearTermId = yearTerm.YearTermId;
             Year = yearTerm.Year;
-            Term = GetTerm(yearTerm.Term);
-            IsDefault = yearTerm.IsDefault;
-            Choices = yearTerm.Choices;
+            Term = string.Format("{0} {1}", Year, GetTerm(yearTerm.Term));
+            IsDefault = yearTerm.IsDefault;            
+        }
+
+        public YearTermViewModel()
+        {
+            
         }
 
         private string GetTerm(int termId)

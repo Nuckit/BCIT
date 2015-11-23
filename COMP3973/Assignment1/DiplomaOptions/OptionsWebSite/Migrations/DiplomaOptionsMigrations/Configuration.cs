@@ -1,12 +1,9 @@
+using System;
+using System.Data.Entity.Migrations;
 using DiplomaDataModel;
 
 namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-
     internal sealed class Configuration : DbMigrationsConfiguration<DiplomaOptionsContext>
     {
         public Configuration()
@@ -105,6 +102,249 @@ namespace OptionsWebSite.Migrations.DiplomaOptionsMigrations
             };
 
             context.Options.AddOrUpdate(o => o.Title, option1, option2, option3, option4, option5, option6, option7);
+            context.SaveChanges();
+
+            context.Choices.AddOrUpdate(c => c.ChoiceId, new Choice
+            {
+                ChoiceId = 1,
+                FirstChoiceOptionId = 1,
+                SecondChoiceOptionId = 2,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 4,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A000",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 2,
+                FirstChoiceOptionId = 1,
+                SecondChoiceOptionId = 2,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 4,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A001",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 3,
+                FirstChoiceOptionId = 6,
+                SecondChoiceOptionId = 5,
+                ThirdChoiceOptionId = 1,
+                FourthChoiceOptionId = 2,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A002",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 4,
+                FirstChoiceOptionId = 3,
+                SecondChoiceOptionId = 7,
+                ThirdChoiceOptionId = 2,
+                FourthChoiceOptionId = 5,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A003",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 5,
+                FirstChoiceOptionId = 3,
+                SecondChoiceOptionId = 4,
+                ThirdChoiceOptionId = 5,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A004",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 6,
+                FirstChoiceOptionId = 1,
+                SecondChoiceOptionId = 7,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 5,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A005",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 7,
+                FirstChoiceOptionId = 7,
+                SecondChoiceOptionId = 5,
+                ThirdChoiceOptionId = 6,
+                FourthChoiceOptionId = 4,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A006",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 8,
+                FirstChoiceOptionId = 7,
+                SecondChoiceOptionId = 6,
+                ThirdChoiceOptionId = 5,
+                FourthChoiceOptionId = 4,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A007",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 9,
+                FirstChoiceOptionId = 1,
+                SecondChoiceOptionId = 2,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 4,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A008",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 10,
+                FirstChoiceOptionId = 4,
+                SecondChoiceOptionId = 1,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A009",
+                YearTermId = 3,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 11,
+                FirstChoiceOptionId = 2,
+                SecondChoiceOptionId = 1,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0010",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 12,
+                FirstChoiceOptionId = 2,
+                SecondChoiceOptionId = 1,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0011",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 13,
+                FirstChoiceOptionId = 4,
+                SecondChoiceOptionId = 3,
+                ThirdChoiceOptionId = 2,
+                FourthChoiceOptionId = 1,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0012",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 14,
+                FirstChoiceOptionId = 5,
+                SecondChoiceOptionId = 4,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0013",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 15,
+                FirstChoiceOptionId = 2,
+                SecondChoiceOptionId = 3,
+                ThirdChoiceOptionId = 7,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0014",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 16,
+                FirstChoiceOptionId = 7,
+                SecondChoiceOptionId = 4,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0015",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 17,
+                FirstChoiceOptionId = 7,
+                SecondChoiceOptionId = 1,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 2,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0016",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 18,
+                FirstChoiceOptionId = 1,
+                SecondChoiceOptionId = 5,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 6,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0017",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 19,
+                FirstChoiceOptionId = 4,
+                SecondChoiceOptionId = 6,
+                ThirdChoiceOptionId = 7,
+                FourthChoiceOptionId = 5,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0018",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            }, new Choice
+            {
+                ChoiceId = 20,
+                FirstChoiceOptionId = 2,
+                SecondChoiceOptionId = 1,
+                ThirdChoiceOptionId = 3,
+                FourthChoiceOptionId = 4,
+                StudentFirstName = "Test",
+                StudentLastName = "Student",
+                StudentId = "A0019",
+                YearTermId = 4,
+                SelectionDate = DateTime.Now
+            });
             context.SaveChanges();
         }
     }

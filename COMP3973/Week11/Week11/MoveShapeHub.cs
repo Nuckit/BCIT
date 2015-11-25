@@ -18,14 +18,18 @@ namespace Week11
         private readonly IHubContext _hubContext;
         private Timer _broadcastLoop;
         private ShapeModel _model;
+        private ShapeModel _model2;
         private bool _modelUpdated;
+        private bool _model2Updated;
         public Broadcaster()
         {
             // Save our hub context so we can easily use it 
             // to send to its connected clients
             _hubContext = GlobalHost.ConnectionManager.GetHubContext<MoveShapeHub>();
             _model = new ShapeModel();
+            _model2 = new ShapeModel();
             _modelUpdated = false;
+            _model2Updated = false;
             // Start the broadcast loop
             _broadcastLoop = new Timer(
                 BroadcastShape,
@@ -36,12 +40,23 @@ namespace Week11
         public void BroadcastShape(object state)
         {
             // No need to send anything if our model hasn't changed
-            if (_modelUpdated)
+            if (_modelUpdated)// || _model2Updated)
             {
                 // This is how we can access the Clients property 
                 // in a static hub method or outside of the hub entirely
                 _hubContext.Clients.AllExcept(_model.LastUpdatedBy).updateShape(_model);
                 _modelUpdated = false;
+
+                //_hubContext.Clients.AllExcept(_model2.LastUpdatedBy).updateShape2(_model2);
+                //_model2Updated = false;
+
+                //_hubContext.Clients.AllExcept(_model2.LastUpdatedBy).updateShape2(_model2);
+                //_model2Updated = false;
+            }
+            else if (_model2Updated)
+            {
+                _hubContext.Clients.AllExcept(_model2.LastUpdatedBy).updateShape2(_model2);
+                _model2Updated = false;
             }
         }
         public void UpdateShape(ShapeModel clientModel)
@@ -49,7 +64,77 @@ namespace Week11
             _model = clientModel;
             _modelUpdated = true;
         }
+        public void UpdateShape2(ShapeModel clientModel)
+        {
+            _model2 = clientModel;
+            _model2Updated = true;
+        }
         public static Broadcaster Instance
+        {
+            get
+            {
+                return _instance.Value;
+            }
+        }
+    }
+
+    public class Broadcaster2
+    {
+        private readonly static Lazy<Broadcaster2> _instance =
+            new Lazy<Broadcaster2>(() => new Broadcaster2());
+        // We're going to broadcast to all clients a maximum of 25 times per second
+        private readonly TimeSpan BroadcastInterval =
+            TimeSpan.FromMilliseconds(40);
+        private readonly IHubContext _hubContext;
+        private Timer _broadcastLoop;
+        private ShapeModel _model;
+        private ShapeModel _model2;
+        private bool _modelUpdated;
+        private bool _model2Updated;
+        public Broadcaster2()
+        {
+            // Save our hub context so we can easily use it 
+            // to send to its connected clients
+            _hubContext = GlobalHost.ConnectionManager.GetHubContext<MoveShapeHub2>();
+            _model = new ShapeModel();
+            _model2 = new ShapeModel();
+            _modelUpdated = false;
+            _model2Updated = false;
+            // Start the broadcast loop
+            _broadcastLoop = new Timer(
+                BroadcastShape,
+                null,
+                BroadcastInterval,
+                BroadcastInterval);
+        }
+        public void BroadcastShape(object state)
+        {
+            // No need to send anything if our model hasn't changed
+            if (_modelUpdated)// || _model2Updated)
+            {
+                // This is how we can access the Clients property 
+                // in a static hub method or outside of the hub entirely
+                _hubContext.Clients.AllExcept(_model.LastUpdatedBy).updateShape(_model);
+                _modelUpdated = false;
+
+                //_hubContext.Clients.AllExcept(_model2.LastUpdatedBy).updateShape2(_model2);
+                //_model2Updated = false;
+
+                //_hubContext.Clients.AllExcept(_model2.LastUpdatedBy).updateShape2(_model2);
+                //_model2Updated = false;
+            }
+        }
+        public void UpdateShape(ShapeModel clientModel)
+        {
+            _model = clientModel;
+            _modelUpdated = true;
+        }
+        public void UpdateShape2(ShapeModel clientModel)
+        {
+            _model2 = clientModel;
+            _model2Updated = true;
+        }
+        public static Broadcaster2 Instance
         {
             get
             {
@@ -75,6 +160,42 @@ namespace Week11
             clientModel.LastUpdatedBy = Context.ConnectionId;
             // Update the shape model within our broadcaster
             _broadcaster.UpdateShape(clientModel);
+            //_broadcaster.UpdateShape2(clientModel);
+        }
+        public void UpdateModel2(ShapeModel clientModel)
+        {
+            clientModel.LastUpdatedBy = Context.ConnectionId;
+            // Update the shape model within our broadcaster
+            _broadcaster.UpdateShape2(clientModel);
+            //_broadcaster.UpdateShape2(clientModel);
+        }
+    }
+
+    public class MoveShapeHub2 : Hub
+    {
+        // Is set via the constructor on each creation
+        private Broadcaster2 _broadcaster;
+        public MoveShapeHub2()
+            : this(Broadcaster2.Instance)
+        {
+        }
+        public MoveShapeHub2(Broadcaster2 broadcaster)
+        {
+            _broadcaster = broadcaster;
+        }
+        public void UpdateModel(ShapeModel clientModel)
+        {
+            clientModel.LastUpdatedBy = Context.ConnectionId;
+            // Update the shape model within our broadcaster
+            _broadcaster.UpdateShape(clientModel);
+            //_broadcaster.UpdateShape2(clientModel);
+        }
+        public void UpdateModel2(ShapeModel clientModel)
+        {
+            clientModel.LastUpdatedBy = Context.ConnectionId;
+            // Update the shape model within our broadcaster
+            _broadcaster.UpdateShape2(clientModel);
+            //_broadcaster.UpdateShape2(clientModel);
         }
     }
     public class ShapeModel

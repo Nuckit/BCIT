@@ -24,50 +24,123 @@
     <script src="Scripts/jquery-ui-1.11.4.min.js"></script>
     <script src="Scripts/jquery.signalR-2.1.2.js"></script>
     <script src="/signalr/hubs"></script>
-    <script>
-        $(function () {
-            var moveShapeHub = $.connection.moveShapeHub,
-                $shape = $("#shape"),
-                // Send a maximum of 10 messages per second
-                // (mouse movements trigger a lot of messages)
-                messageFrequency = 10,
-                // Determine how often to send messages in
-                // time to abide by the messageFrequency
-                updateRate = 1000 / messageFrequency,
-                shapeModel = {
-                    left: 0,
-                    top: 0
-                },
-                moved = false;
-            moveShapeHub.client.updateShape = function (model) {
-                shapeModel = model;
-                // Gradually move the shape towards the new location (interpolate)
-                // The updateRate is used as the duration because by the time 
-                // we get to the next location we want to be at the "last" location
-                // We also clear the animation queue so that we start a new 
-                // animation and don't lag behind.
-                $shape.animate(shapeModel, { duration: updateRate, queue: false });
-            };
-            $.connection.hub.start().done(function () {
-                $shape.draggable({
-                    drag: function () {
-                        shapeModel = $shape.offset();
-                        moved = true;
-                    }
-                });
-                // Start the client side server update interval
-                setInterval(updateServerModel, updateRate);
-            });
-            function updateServerModel() {
-                // Only update server if we have a new movement
-                if (moved) {
-                    moveShapeHub.server.updateModel(shapeModel);
-                    moved = false;
+<script>
+    $(function() {
+        var moveShapeHub = $.connection.moveShapeHub,
+            $shape = $("#shape"),
+            $circle = $("#circle"),
+            // Send a maximum of 10 messages per second
+            // (mouse movements trigger a lot of messages)
+            messageFrequency = 10,
+            // Determine how often to send messages in
+            // time to abide by the messageFrequency
+            updateRate = 1000 / messageFrequency,
+            shapeModel = {
+                left: 0,
+                top: 0
+            },
+            circleModel = {
+                left: 0,
+                top: 0
+            },
+            moved = false,
+            moved2 = false;
+        moveShapeHub.client.updateShape = function(model) {
+            shapeModel = model;
+            // Gradually move the shape towards the new location (interpolate)
+            // The updateRate is used as the duration because by the time 
+            // we get to the next location we want to be at the "last" location
+            // We also clear the animation queue so that we start a new 
+            // animation and don't lag behind.
+            $shape.animate(shapeModel, { duration: updateRate, queue: false });
+        };
+        moveShapeHub.client.updateShape2 = function (model) {
+            circleModel = model;
+            // Gradually move the shape towards the new location (interpolate)
+            // The updateRate is used as the duration because by the time 
+            // we get to the next location we want to be at the "last" location
+            // We also clear the animation queue so that we start a new 
+            // animation and don't lag behind.
+            $circle.animate(circleModel, { duration: updateRate, queue: false });
+        };
+        $.connection.hub.start().done(function() {
+            $shape.draggable({
+                drag: function() {
+                    shapeModel = $shape.offset();
+                    moved = true;
                 }
-            }
+            });
+            $circle.draggable({
+                drag: function () {
+                    circleModel = $circle.offset();
+                    moved2 = true;
+                }
+            });
+            // Start the client side server update interval
+            setInterval(updateServerModel, updateRate);
         });
-    </script>
 
-    <div id="shape" />
+        function updateServerModel() {
+            // Only update server if we have a new movement
+            if (moved) {
+                moveShapeHub.server.updateModel(shapeModel);
+                moved = false;
+            }
+            else if (moved2) {
+                moveShapeHub.server.updateModel2(circleModel);
+                moved2 = false;
+            }
+        }
+    });
+</script>
+    <!--<script>
+    $(function () {
+        var moveShapeHub2 = $.connection.moveShapeHub2,
+            $circle = $("#circle"),
+            // Send a maximum of 10 messages per second
+            // (mouse movements trigger a lot of messages)
+            messageFrequency = 10,
+            // Determine how often to send messages in
+            // time to abide by the messageFrequency
+            updateRate = 1000 / messageFrequency,
+            circleModel = {
+                left: 0,
+                top: 0
+            },
+            moved2 = false;
+        moveShapeHub2.client.updateShape = function (model) {
+            circleModel = model;
+            // Gradually move the shape towards the new location (interpolate)
+            // The updateRate is used as the duration because by the time
+            // we get to the next location we want to be at the "last" location
+            // We also clear the animation queue so that we start a new
+            // animation and don't lag behind.
+            $circle.animate(circleModel, { duration: updateRate, queue: false });
+        };
+        $.connection2.hub.start().done(function () {
+            $circle.draggable({
+                drag: function () {
+                    circleModel = $circle.offset();
+                    moved2 = true;
+                }
+            });
+            // Start the client side server update interval
+            setInterval(updateServerModel2, updateRate);
+        });
+        function updateServerModel2() {
+            // Only update server if we have a new movement
+            if (moved2) {
+                moveShapeHub2.server.updateModel(circleModel);
+                moved2 = false;
+            }
+        }
+    });
+    </script>-->
+
+
+
+<div id="shape"></div>
+    
+    <div id="circle"></div>
 </body>
 </html> 

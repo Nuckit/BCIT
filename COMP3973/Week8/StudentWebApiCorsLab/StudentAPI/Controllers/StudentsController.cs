@@ -13,7 +13,7 @@ using StudentAPI.Models;
 
 namespace StudentAPI.Controllers
 {
-    [EnableCors("*", "*", "GET")]
+    [EnableCors("*", "*", "*")]
     public class StudentsController : ApiController
     {
         private StudentsContext db = new StudentsContext();

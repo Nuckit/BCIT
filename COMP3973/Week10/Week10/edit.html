@@ -1,0 +1,36 @@
+﻿<div class="container">
+    <h1>Edit Student</h1>
+
+    <form novalidate="novalidate" class="form-horizontal">
+        <div class="control-group">
+            <label class="control-label" for="inputFirstName">Student ID:</label>
+            <div class="controls">
+                <input type="text" id="inputStudentId" ng-model="student.StudentId" />
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputFirstName">First Name:</label>
+            <div class="controls">
+                <input type="text" id="inputFirstName" ng-model="student.FirstName"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputLastName">Last Name:</label>
+            <div class="controls">
+                <input type="text" id="inputLastName" ng-model="student.LastName"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputFirstName">Program:</label>
+            <div class="controls">
+                <input type="text" id="inputProgram" ng-model="student.Program" />
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <a ng-click="cancel()" class="btn btn-small">Cancel</a>
+                <a ng-click="updateStudent(student.StudentId)" class="btn btn-small btn-primary">Update Student</a>
+            </div>
+        </div>
+    </form>
+</div>
